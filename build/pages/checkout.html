@@ -1,0 +1,61 @@
+<div class="container">
+  <p class="breadcrumb"><a href="index.html" data-i18n="home">Home</a> / <a href="cart.html" data-i18n="bag_short">Bag</a> / <span data-i18n="checkout_title">Checkout</span></p>
+  <div class="page-hero" style="padding-top:0;padding-bottom:var(--space-3);">
+    <h1 data-i18n="checkout_title">Checkout</h1>
+  </div>
+
+  <div class="steps">
+    <span class="active" data-i18n="step1">1. Shipping</span>
+    <span data-i18n="step2">2. Payment</span>
+    <span data-i18n="step3">3. Confirmation</span>
+  </div>
+
+  <div class="cart-layout">
+    <form data-demo-form="toast_order_placed" data-clear-cart>
+      <h3 style="font-size:var(--fs-md);margin-bottom:var(--space-2);" data-i18n="contact">Contact</h3>
+      <div class="form-grid" style="margin-bottom:var(--space-3);">
+        <div class="field"><label for="co-email" data-i18n="email">Email</label><input id="co-email" type="email" required placeholder="you@example.com"></div>
+      </div>
+
+      <h3 style="font-size:var(--fs-md);margin-bottom:var(--space-2);" data-i18n="shipping_address">Shipping Address</h3>
+      <div class="form-grid two" style="margin-bottom:var(--space-2);">
+        <div class="field"><label for="co-fname" data-i18n="first_name">First Name</label><input id="co-fname" type="text" required></div>
+        <div class="field"><label for="co-lname" data-i18n="last_name">Last Name</label><input id="co-lname" type="text" required></div>
+      </div>
+      <div class="form-grid" style="margin-bottom:var(--space-2);">
+        <div class="field"><label for="co-addr" data-i18n="address">Address</label><input id="co-addr" type="text" required></div>
+      </div>
+      <div class="form-grid two" style="margin-bottom:var(--space-3);">
+        <div class="field"><label for="co-city" data-i18n="city">City</label><input id="co-city" type="text" required></div>
+        <div class="field"><label for="co-zip" data-i18n="postal_code">Postal Code</label><input id="co-zip" type="text" required></div>
+      </div>
+      <div class="form-grid two" style="margin-bottom:var(--space-3);">
+        <div class="field"><label for="co-country" data-i18n="country">Country</label>
+          <select id="co-country"><option>Italy</option><option>Sweden</option><option>France</option><option>Germany</option><option>United Arab Emirates</option></select>
+        </div>
+        <div class="field"><label for="co-phone" data-i18n="phone">Phone</label><input id="co-phone" type="tel"></div>
+      </div>
+
+      <h3 style="font-size:var(--fs-md);margin-bottom:var(--space-2);" data-i18n="payment">Payment</h3>
+      <div class="pay-methods">
+        <label><input type="radio" name="pay" checked> <span data-i18n="credit_card">Credit Card</span></label>
+        <label><input type="radio" name="pay"> PayPal</label>
+        <label><input type="radio" name="pay"> Apple Pay</label>
+      </div>
+      <div class="form-grid two" style="margin-bottom:var(--space-4);">
+        <div class="field"><label for="co-card" data-i18n="card_number">Card Number</label><input id="co-card" type="text" placeholder="•••• •••• •••• ••••"></div>
+        <div class="field"><label for="co-exp" data-i18n="expiry">Expiry</label><input id="co-exp" type="text" placeholder="MM / YY"></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" data-i18n="place_order">Place Order</button>
+    </form>
+
+    <div class="summary-card">
+      <h3 data-i18n="order_summary">Order Summary</h3>
+      <div data-checkout-summary style="margin-bottom:var(--space-2);"></div>
+      <div class="summary-row"><span data-i18n="subtotal">Subtotal</span><span data-subtotal>€0</span></div>
+      <div class="summary-row"><span data-i18n="shipping">Shipping</span><span data-shipping>Free</span></div>
+      <div class="summary-row total"><span data-i18n="total">Total</span><span data-total>€0</span></div>
+    </div>
+  </div>
+</div>
