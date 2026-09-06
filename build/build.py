@@ -7,7 +7,7 @@ import os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pages")
-ASSET_V = "9"  # bump on every css/js change during development to bust browser cache
+ASSET_V = "10"  # bump on every css/js change during development to bust browser cache
 
 NAV = [
     ("nav_new_in", "NEW IN", "new-in.html", ""),
@@ -26,16 +26,28 @@ ICONS = {
     "menu": '<svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>',
     "close": '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>',
     "tiktok": '<svg viewBox="0 0 24 24"><path d="M16.5 3c.3 1.9 1.6 3.4 3.5 3.7v2.7c-1.3 0-2.5-.4-3.5-1.1v6.6c0 3-2.4 5.1-5.1 5.1-1.4 0-2.7-.6-3.6-1.6-1.6-1.7-1.7-4.5.1-6.3 1.3-1.3 3.1-1.7 4.7-1.2v2.8c-.4-.2-.9-.3-1.4-.2-1 .2-1.8 1.1-1.8 2.2 0 1.3 1.1 2.3 2.4 2.2 1-.1 1.8-1 1.8-2.1V3h3z"/></svg>',
+    "chevron": '<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>',
+    "whatsapp": '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3.1 1.3 4.8 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.3-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.4-1.8-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.4 3.8 3.4.5.2.9.4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>',
+    "phone": '<svg viewBox="0 0 24 24"><path d="M5 4h3.5l1.5 4.5-2.2 1.8a12 12 0 0 0 5.9 5.9l1.8-2.2 4.5 1.5V19a2 2 0 0 1-2 2C10.6 21 3 13.4 3 4a2 2 0 0 1 2-2z"/></svg>',
+    "globe": '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-6-4-9s1.5-6.4 4-9z"/></svg>',
 }
 
-LANGS = [("en", "EN"), ("ar", "عربي"), ("sv", "SV")]
+LANGS = [("en", "EN", "English"), ("ar", "AR", "العربية"), ("sv", "SV", "Svenska")]
 
 def lang_switch_html(extra_class=""):
-    btns = "\n".join(
-        f'<button type="button" data-lang="{code}" class="{"active" if code=="en" else ""}">{label}</button>'
-        for code, label in LANGS
+    items = "\n".join(
+        f'<li><button type="button" data-lang="{code}" class="{"active" if code == "en" else ""}">'
+        f'<span class="lang-code">{short}</span><span class="lang-name">{native}</span></button></li>'
+        for code, short, native in LANGS
     )
-    return f'<div class="lang-switch {extra_class}" data-lang-switch>{btns}</div>'
+    return f'''<div class="lang-switch {extra_class}" data-lang-switch>
+  <button type="button" class="lang-switch-toggle" data-lang-toggle aria-haspopup="true" aria-expanded="false">
+    {ICONS['globe']}<span data-lang-current>EN</span>{ICONS['chevron']}
+  </button>
+  <ul class="lang-switch-menu">
+  {items}
+  </ul>
+</div>'''
 
 
 def build_shell(title, description, active, body, canonical, body_class=""):
@@ -177,9 +189,10 @@ def build_shell(title, description, active, body, canonical, body_class=""):
       <small data-i18n="footer_copyright">&copy; 2026 BENZCOMILANO. All rights reserved.</small>
       <div class="social-row">
         <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h3l1-3h-4V9c0-.5.3-1 1-1z"/></svg></a>
         <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 17l2-9c-1 0-2 1-2 2.5S10 13 11 13c2 0 3.5-1.8 3.5-4 0-1.8-1.5-3-3.3-3-2.3 0-3.9 1.7-3.9 3.6 0 .8.3 1.4.7 1.9"/></svg></a>
         <a href="https://www.tiktok.com/@benzcostock" target="_blank" rel="noopener" aria-label="TikTok">{ICONS['tiktok']}</a>
+        <a href="https://wa.me/46762000564" target="_blank" rel="noopener" aria-label="WhatsApp">{ICONS['whatsapp']}</a>
+        <a href="tel:+46762000564" aria-label="Phone">{ICONS['phone']}</a>
       </div>
     </div>
   </div>

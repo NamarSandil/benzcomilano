@@ -26,7 +26,11 @@
     document.querySelectorAll('[data-i18n]').forEach(el=>{ el.textContent = t(el.dataset.i18n); });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{ el.placeholder = t(el.dataset.i18nPlaceholder); });
     document.querySelectorAll('[data-i18n-aria]').forEach(el=>{ el.setAttribute('aria-label', t(el.dataset.i18nAria)); });
-    document.querySelectorAll('[data-lang-switch] button').forEach(b=>{ b.classList.toggle('active', b.dataset.lang===currentLang()); });
+    document.querySelectorAll('[data-lang-switch]').forEach(root=>{
+      root.querySelectorAll('button[data-lang]').forEach(b=>{ b.classList.toggle('active', b.dataset.lang===currentLang()); });
+      const cur = root.querySelector('[data-lang-current]');
+      if(cur) cur.textContent = currentLang().toUpperCase();
+    });
   }
 
   function refreshDynamicContent(){
@@ -59,8 +63,33 @@
   window.bcApplyLanguage = applyLanguage;
 
   function initLangSwitch(){
-    document.querySelectorAll('[data-lang-switch] button').forEach(btn=>{
-      btn.addEventListener('click', ()=> applyLanguage(btn.dataset.lang));
+    const roots = document.querySelectorAll('[data-lang-switch]');
+    roots.forEach(root=>{
+      const toggle = root.querySelector('[data-lang-toggle]');
+      if(toggle){
+        toggle.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          const willOpen = !root.classList.contains('open');
+          roots.forEach(r=>{ r.classList.remove('open'); const t2=r.querySelector('[data-lang-toggle]'); if(t2) t2.setAttribute('aria-expanded','false'); });
+          root.classList.toggle('open', willOpen);
+          toggle.setAttribute('aria-expanded', String(willOpen));
+        });
+      }
+      root.querySelectorAll('button[data-lang]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          applyLanguage(btn.dataset.lang);
+          root.classList.remove('open');
+          if(toggle) toggle.setAttribute('aria-expanded','false');
+        });
+      });
+    });
+    document.addEventListener('click', ()=>{
+      roots.forEach(r=>{ r.classList.remove('open'); const t2=r.querySelector('[data-lang-toggle]'); if(t2) t2.setAttribute('aria-expanded','false'); });
+    });
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape'){
+        roots.forEach(r=>{ r.classList.remove('open'); const t2=r.querySelector('[data-lang-toggle]'); if(t2) t2.setAttribute('aria-expanded','false'); });
+      }
     });
   }
 
