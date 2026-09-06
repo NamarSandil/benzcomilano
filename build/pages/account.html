@@ -1,0 +1,42 @@
+<div class="container">
+  <p class="breadcrumb"><a href="index.html" data-i18n="home">Home</a> / <span data-i18n="my_account">Account</span></p>
+  <div class="page-hero" style="padding-top:0;">
+    <h1 data-i18n="my_account">My Account</h1>
+  </div>
+
+  <div class="tabs">
+    <button class="active" data-tab-target="#tab-login" data-i18n="sign_in">Sign In</button>
+    <button data-tab-target="#tab-register" data-i18n="create_account">Create Account</button>
+    <button data-tab-target="#tab-orders" data-i18n="orders">Orders</button>
+  </div>
+
+  <div id="tab-login" class="tab-panel active narrow-form">
+    <form data-demo-form="toast_signed_in">
+      <div class="field" style="margin-bottom:var(--space-2);"><label for="li-email" data-i18n="email">Email</label><input id="li-email" type="email" required></div>
+      <div class="field" style="margin-bottom:var(--space-3);"><label for="li-pass" data-i18n="password">Password</label><input id="li-pass" type="password" required></div>
+      <button type="submit" class="btn btn-primary btn-block" data-i18n="sign_in">Sign In</button>
+      <p style="font-size:var(--fs-sm);margin-top:var(--space-2);color:var(--c-gray-700);"><span data-i18n="forgot_password">Forgot your password?</span> <a href="#" style="text-decoration:underline;" data-i18n="reset_it_here">Reset it here</a>.</p>
+    </form>
+  </div>
+
+  <div id="tab-register" class="tab-panel narrow-form">
+    <form data-demo-form="toast_account_created">
+      <div class="form-grid two" style="margin-bottom:var(--space-2);">
+        <div class="field"><label for="reg-fname" data-i18n="first_name">First Name</label><input id="reg-fname" type="text" required></div>
+        <div class="field"><label for="reg-lname" data-i18n="last_name">Last Name</label><input id="reg-lname" type="text" required></div>
+      </div>
+      <div class="field" style="margin-bottom:var(--space-2);"><label for="reg-email" data-i18n="email">Email</label><input id="reg-email" type="email" required></div>
+      <div class="field" style="margin-bottom:var(--space-3);"><label for="reg-pass" data-i18n="password">Password</label><input id="reg-pass" type="password" required></div>
+      <button type="submit" class="btn btn-primary btn-block" data-i18n="create_account">Create Account</button>
+    </form>
+  </div>
+
+  <div id="tab-orders" class="tab-panel">
+    <div class="empty-state">
+      <svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+      <h3 data-i18n="no_orders_title">No orders yet</h3>
+      <p data-i18n="no_orders_text">Once you place an order, it will appear here.</p>
+      <a href="shop.html" class="btn btn-outline" data-i18n="start_shopping">Start Shopping</a>
+    </div>
+  </div>
+</div>
