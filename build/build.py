@@ -7,7 +7,7 @@ import os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pages")
-ASSET_V = "10"  # bump on every css/js change during development to bust browser cache
+ASSET_V = "11"  # bump on every css/js change during development to bust browser cache
 
 NAV = [
     ("nav_new_in", "NEW IN", "new-in.html", ""),
