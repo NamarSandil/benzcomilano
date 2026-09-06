@@ -262,6 +262,7 @@ h1,h2,h3,h4{ font-family:var(--font-display); font-weight:500; line-height:1.1; 
 /* ---------- Hero ---------- */
 .hero{ position:relative; height:min(88vh,900px); min-height:460px; display:flex; align-items:flex-end; overflow:hidden; }
 .hero .ph{ position:absolute; inset:0; aspect-ratio:auto; }
+.hero-logo{ position:absolute; top:42%; left:50%; transform:translate(-50%,-50%); width:min(46%,340px); height:auto; opacity:0.9; }
 .hero-content{ position:relative; z-index:1; padding:var(--space-5) var(--container-pad); color:var(--c-white); width:100%; }
 .hero-content .eyebrow{ color:rgba(255,255,255,.8); }
 .hero h1{ font-size:var(--fs-3xl); color:var(--c-white); letter-spacing:.04em; overflow-wrap:break-word; }
